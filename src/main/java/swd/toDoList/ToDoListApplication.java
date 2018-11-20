@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 import swd.toDoList.bean.Listitem;
@@ -25,13 +25,13 @@ public class ToDoListApplication {
 	public CommandLineRunner listitemDemo(ListitemRepository repository, UserRepository userRepo) {
 		return (args) -> {
 
-			//BCryptPasswordEncoder bKrypta = new BCryptPasswordEncoder();
-			//User user1 = new User("user", bKrypta.encode("password"), "b@google.ru",
-			//		"USER");
-			//User user2 = new User("admin", bKrypta.encode("admin123"), "a@yahoo.fi",
-			//		"ADMIN");
-			//userRepo.save(user1);
-			//userRepo.save(user2);
+			BCryptPasswordEncoder bKrypta = new BCryptPasswordEncoder();
+			User user1 = new User("user", bKrypta.encode("password"), "b@google.ru",
+				"USER");
+			User user2 = new User("admin", bKrypta.encode("admin123"), "a@yahoo.fi",
+				"ADMIN");
+			userRepo.save(user1);
+			userRepo.save(user2);
 
 			repository.save(
 					new Listitem(0, "ABCD-1234-BCDA"));

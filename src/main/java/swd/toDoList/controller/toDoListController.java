@@ -82,8 +82,8 @@ public class toDoListController {
 		return "editlistitem";
 	}
 
-	//@RequestMapping(value="/login")
-	//public String login() {
-	//	return "login";
-	//}
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
 }
