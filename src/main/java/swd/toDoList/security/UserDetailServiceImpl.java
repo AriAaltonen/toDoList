@@ -1,5 +1,5 @@
 package swd.toDoList.security;
-
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,3 +27,4 @@ public class UserDetailServiceImpl implements UserDetailsService {
 		return user;
 	}
 }
+*/

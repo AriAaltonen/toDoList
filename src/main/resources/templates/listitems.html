@@ -3,40 +3,35 @@
 		xmlns:th="http://www.thymeleaf.org">
 		
 <head>
-	<title>Listing of all books in the database</title>
+	<title>Listing of all items in the ToDoList</title>
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 	<body>
 	<div class="container">
-		<h1>Book list</h1>
+		<h1>ToDoList</h1>
 	<div>
-		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		<!--<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>-->
 	</div>
 		<table class="table table-striped">
 			<tr>
-				<th>Title</th>
-				<th>Author</th>
-				<th>Year</th>
-				<th>Price</th>
-				<th>ISBN</th>
-				<th>Category</th>
-				<th sec:authorize="hasAuthority('ADMIN')"/>
+				<th>Id</th>
+				<th>Listitem</th>
+				<th> </th>
+				<th> </th>
+				<th> </th>
+				</th>
 			</tr>
 			<tr>
-				<td><tr th:each="phQuestion : ${phQuestionList}">
-				<td th:text="${phQuestion.phQuestion}"></td>
-				<td th:text="${book.author}"></td>
-				<td th:text="${book.year}"></td>
-				<td th:text="${book.price}"></td>
-				<td th:text="${book.isbn}"></td>
-				<td th:text="${book.category.name}"></td>
-				<td><a th:href="@{/editbook/{isbn}(isbn=${book.isbn})}" class="btn btn-primary">Edit</a></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{isbn}(isbn=${book.isbn})}" class="btn btn-danger">Delete</a></td>
+				<td><tr th:each="listitem : ${listitemlist}">
+				<td th:text="${listitem.id}"></td>
+				<td th:text="${listitem.toDoListitem}"></td>
+				<td><a th:href="@{/editlistitem/{id}(id=${listitem.id})}" class="btn btn-primary">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${listitem.id})}" class="btn btn-danger">Delete</a></td>
 			</tr>
 		</table>
 		<div class="row">
 			<div class="col-md-2">
-				<a href="/addbook" class="btn btn-success btn-block">Add book</a>
+				<a href="/addlistitem" class="btn btn-success btn-block">Add Listitem</a>
 			</div>
 			<div class="col-md-2">
 				<form th:action="@{/logout}" method="post">

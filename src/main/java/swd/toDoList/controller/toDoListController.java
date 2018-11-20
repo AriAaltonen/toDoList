@@ -1,6 +1,5 @@
 package swd.toDoList.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,6 @@ public class toDoListController {
 	@Autowired
 	private ListitemRepository listitemrepository;
 	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String homepage(Model model) {
-
-		return "index";
-	}
 	//Show all listitems
 	//******************************************
 	@RequestMapping(value = "/listitems", method = RequestMethod.GET)
@@ -62,7 +56,7 @@ public class toDoListController {
 	//@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteListitem(@PathVariable("id") Long id, Model model) {
 		listitemrepository.deleteById(id);
-		return "redirect:/listofitems";
+		return "redirect:/listitems";
 	}
 	//Edit listitem 
 	//******************************************
@@ -88,8 +82,8 @@ public class toDoListController {
 		return "editlistitem";
 	}
 
-	@RequestMapping(value="/login")
-	public String login() {
-		return "login";
-	}
+	//@RequestMapping(value="/login")
+	//public String login() {
+	//	return "login";
+	//}
 }

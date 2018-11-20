@@ -1,5 +1,5 @@
 package swd.toDoList.security;
-
+/*
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -49,11 +49,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * User.withDefaultPasswordEncoder().username(username).password(password).roles
 	 * (role).build(); }
 	 */
-	@Autowired
+/*	@Autowired
 	private UserDetailServiceImpl userDetailsService;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
-}
+}*/
