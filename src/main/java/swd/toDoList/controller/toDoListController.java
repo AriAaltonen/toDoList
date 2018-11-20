@@ -62,7 +62,7 @@ public class toDoListController {
 	//******************************************
 	@RequestMapping(value = "/editlistitem/{id}")
 	public String addListitem(@PathVariable("id") Long id, Model model){
-		model.addAttribute("book", listitemrepository.findById(id));
+		model.addAttribute("listitem", listitemrepository.findById(id));
 		return "editlistitem";
 	}
 	//Edit listitem POST
