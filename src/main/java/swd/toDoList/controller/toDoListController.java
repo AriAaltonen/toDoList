@@ -13,23 +13,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import swd.toDoList.bean.Listitem;
+import swd.toDoList.bean.Status;
 import swd.toDoList.dao.ListitemRepository;
+import swd.toDoList.dao.StatusRepository;
 
 @Controller
 public class toDoListController {
 	@Autowired
 	private ListitemRepository listitemrepository;
+	@Autowired
+	private StatusRepository statusrepo;
 	
 	//Show all listitems
 	//******************************************
-	@RequestMapping(value = "/listitems", method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String listitemList(Model model) {
 		model.addAttribute("listitemlist", listitemrepository.findAll());
 		return "listitems";
 	}
 	//Find a listitem by id
 	//******************************************
-	@RequestMapping(value="/listitem/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/index/{id}", method = RequestMethod.GET)
 		public @ResponseBody Optional<Listitem> findListitemRest(@PathVariable("id") Long id) {
 			return listitemrepository.findById(id);
 	}
@@ -37,8 +41,9 @@ public class toDoListController {
 	//Add a listitem with GET
 	//******************************************
 	@RequestMapping(value = "/addlistitem", method = RequestMethod.GET)
-	public String addlistitem(Model model) {
+	public String addlistitem(Status status, Model model) {
 		model.addAttribute("listitem", new Listitem());
+		model.addAttribute("statuses", statusrepo.findAll());
 		return "addlistitem";
 	}
 	//Add a listitem POST
@@ -48,6 +53,7 @@ public class toDoListController {
 		listitemrepository.save(listitem);
 		model.addAttribute("toiminto", "Listitem saved.");
 		model.addAttribute("listitem", new Listitem());
+		model.addAttribute("statuses", statusrepo.findAll());
 		return "addlistitem";
 	}
 	//Delete a listitem
@@ -56,13 +62,14 @@ public class toDoListController {
 	//@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteListitem(@PathVariable("id") Long id, Model model) {
 		listitemrepository.deleteById(id);
-		return "redirect:/listitems";
+		return "redirect:/index";
 	}
-	//Edit listitem 
+	//Edit listitem by id
 	//******************************************
 	@RequestMapping(value = "/editlistitem/{id}")
 	public String addListitem(@PathVariable("id") Long id, Model model){
 		model.addAttribute("listitem", listitemrepository.findById(id));
+		model.addAttribute("statuses", statusrepo.findAll());
 		return "editlistitem";
 	}
 	//Edit listitem POST
@@ -72,16 +79,19 @@ public class toDoListController {
 		listitemrepository.save(listitem);
 		model.addAttribute("toiminto", "Listitem edited.");
 		model.addAttribute("listitem", listitem);
+		model.addAttribute("statuses", statusrepo.findAll());
 		return "editlistitem";
 	}
-	//Edit listitem with GET
+	//Edit listitem GET
 	//******************************************
 	@RequestMapping(value = "/editlistitem", method = RequestMethod.GET)
 	public String editlistitem(Model model) {
 		model.addAttribute("listitem", new Listitem());
+		model.addAttribute("statuses", statusrepo.findAll());
 		return "editlistitem";
 	}
-
+	// Map login page
+	//******************************************
 	@RequestMapping(value="/login")
 	public String login() {
 		return "login";
