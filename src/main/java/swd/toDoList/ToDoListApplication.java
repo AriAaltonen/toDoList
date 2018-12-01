@@ -23,7 +23,7 @@ public class ToDoListApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner listitemDemo(ListitemRepository repository, UserRepository userRepo, StatusRepository statusRepo) {
+	public CommandLineRunner listitemDemo(ListitemRepository listitemRepo, UserRepository userRepo, StatusRepository statusRepo) {
 		return (args) -> {
 			log.info("Add statuses");
 			statusRepo.save(new Status((long) 0, "To-do"));
@@ -36,13 +36,12 @@ public class ToDoListApplication {
 				"ADMIN");
 			userRepo.save(user1);
 
-			repository.save(
-					new Listitem(0, "Return the database", statusRepo.findByName("To-do").get(0)));
-					new Listitem(1, "Add data to tables in the database", statusRepo.findByName("In-progress").get(1));
-					new Listitem(2, "Create a database", statusRepo.findByName("Done").get(2));
+			listitemRepo.save(new Listitem(0, "Return the database", statusRepo.findByStatusName("To-do").get(0)));
+			listitemRepo.save(new Listitem(1, "Add data to tables in the database", statusRepo.findByStatusName("In-progress").get(0)));
+			listitemRepo.save(new Listitem(2, "Create a database", statusRepo.findByStatusName("Done").get(0)));
 
 			log.info("Fetch listitems");
-			for (Listitem listitem : repository.findAll()) {
+			for (Listitem listitem : listitemRepo.findAll()) {
 				log.info((listitem.toString()));
 			}
 		};
