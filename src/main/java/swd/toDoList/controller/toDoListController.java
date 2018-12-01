@@ -26,6 +26,9 @@ public class toDoListController {
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String listitemList(Model model) {
 		model.addAttribute("listitemlist", listitemrepository.findAll());
+		model.addAttribute("listTodo", statusrepo.findByStatusName("To-do").get(0).getListitems());
+		model.addAttribute("listInProgress", statusrepo.findByStatusName("In-progress").get(0).getListitems());
+		model.addAttribute("listDone", statusrepo.findByStatusName("Done").get(0).getListitems());
 		return "listitems";
 	}
 	
