@@ -23,10 +23,15 @@
 			<input type="text" id="toDoListitemr" th:field="*{toDoListitem}"  class="form-control"/>
 			</div>
 			
+			<label for="statuslist">Status</label>
+			<select id="statuslist" th:field="*{status}" class="form-control">
+				<option th:each="status : ${statuses}" th:value="${status.statusId}" th:text="${status.statusName}"></option>
+			</select>
+			
 			<input type="submit" value="Save" class="btn btn-primary"></input>
 			</form>
 		</div>
-		<a href="/listitems">Back to list</a>
+		<a href="/index">Back to list</a>
 	</div>
 	</body>
 </html>

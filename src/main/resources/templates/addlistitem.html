@@ -3,7 +3,7 @@
 		xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Page for adding listitems</title>
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 	<body>
 	<div class="container">
@@ -11,20 +11,22 @@
 		<p th:text="${toiminto}"></p>
 	<div>
 			<form th:object="${listitem}" th:action="@{/addlistitem}" action="#" method="post">
-			<div class="form-group">
-			<label for="id">Id</label>
-			<input readonly="true" type="text" id="id" th:field="*{id}" class="form-control"/>
-			</div>
-			
+			<input readonly="true" type="hidden" id="id" th:field="*{id}" class="form-control"/>
+
 			<div class="form-group">
 			<label for="toDoListitem">Listitem</label>
 			<input type="text" id="toDoListitem" th:field="*{toDoListitem}" class="form-control"/>
 			</div>
 			
+			<label for="statuslist">Status</label>
+			<select id="statuslist" th:field="*{status}" class="form-control">
+				<option th:each="status : ${statuses}" th:value="${status.statusId}" th:text="${status.statusName}"></option>
+			</select>
+			
 			<input type="submit" value="Save" class="btn btn-primary"></input>
 		</form>
 	</div>
-	<a href="/listitems">Back to list</a>
+	<a href="/index">Back to list</a>
 	</div>
 	</body>
 </html>
