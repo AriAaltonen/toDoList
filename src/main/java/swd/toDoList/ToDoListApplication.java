@@ -36,9 +36,9 @@ public class ToDoListApplication {
 				"ADMIN");
 			userRepo.save(user1);
 
-			listitemRepo.save(new Listitem(0, "Return the database", statusRepo.findByStatusName("To-do").get(0)));
-			listitemRepo.save(new Listitem(1, "Add data to tables in the database", statusRepo.findByStatusName("In-progress").get(0)));
-			listitemRepo.save(new Listitem(2, "Create a database", statusRepo.findByStatusName("Done").get(0)));
+			//listitemRepo.save(new Listitem(0, "Return the database", statusRepo.findByStatusName("To-do").get(0)));
+			//listitemRepo.save(new Listitem(1, "Add data to tables in the database", statusRepo.findByStatusName("In-progress").get(0)));
+			//listitemRepo.save(new Listitem(2, "Create a database", statusRepo.findByStatusName("Done").get(0)));
 
 			log.info("Fetch listitems");
 			for (Listitem listitem : listitemRepo.findAll()) {

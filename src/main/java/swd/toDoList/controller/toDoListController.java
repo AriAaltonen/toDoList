@@ -26,16 +26,10 @@ public class toDoListController {
 	
 	//Show all listitems
 	//******************************************
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String listitemList(Model model) {
 		model.addAttribute("listitemlist", listitemrepository.findAll());
 		return "listitems";
-	}
-	//Find a listitem by id
-	//******************************************
-	@RequestMapping(value="/index/{id}", method = RequestMethod.GET)
-		public @ResponseBody Optional<Listitem> findListitemRest(@PathVariable("id") Long id) {
-			return listitemrepository.findById(id);
 	}
 	
 	//Add a listitem with GET
