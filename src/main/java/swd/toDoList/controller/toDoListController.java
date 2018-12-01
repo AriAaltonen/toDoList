@@ -1,6 +1,6 @@
 package swd.toDoList.controller;
 
-import java.util.Optional;
+import org.springframework.security.core.Authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,9 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-
 import swd.toDoList.bean.Listitem;
 import swd.toDoList.bean.Status;
 import swd.toDoList.dao.ListitemRepository;
@@ -87,7 +84,10 @@ public class toDoListController {
 	// Map login page
 	//******************************************
 	@RequestMapping(value="/login")
-	public String login() {
-		return "login";
+    public String login(Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated())
+            return "redirect:/index";
+        else
+            return "login";
 	}
 }
