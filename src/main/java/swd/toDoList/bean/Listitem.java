@@ -13,29 +13,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Listitem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long statusId;
+	private long id;
 	private String toDoListitem;
 	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "statusId")
 	private Status status;
 	
 	public Listitem () {
 		
 	}
 	
-	public Listitem (long statusId, String toDoListitem, Status status) {
-		this.statusId = statusId;
+	public Listitem (long id, String toDoListitem, Status status) {
+		this.id = id;
 		this.toDoListitem = toDoListitem;
 		this.status = status;
 	}
 	
 	public long getId() {
-		return statusId;
+		return id;
 	}
 
-	public void setId(long statusId) {
-		this.statusId = statusId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getToDoListitem() {
@@ -55,6 +55,6 @@ public class Listitem {
 	}
 	@Override
 	public String toString() {
-		return "Listitem [statusId=" + statusId + ", toDoListitem=" + toDoListitem + ", status=" + status + "]";
+		return "Listitem [statusId=" + id + ", toDoListitem=" + toDoListitem + ", status=" + status + "]";
 	}
 }

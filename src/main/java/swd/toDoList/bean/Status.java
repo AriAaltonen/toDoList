@@ -10,26 +10,26 @@ import javax.persistence.OneToMany;
 @Entity
 public class Status {
 	@Id
-	private long id;
+	private long statusId;
 	private String statusName;
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "statusName")
-	private List<Status> statuses;
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "status")
+	private List<Listitem> listitems;
 	
 	public Status () {
 		
 	}
 	
-	public Status (long id, String statusName) {
-		this.id = id;
+	public Status (long statusId, String statusName) {
+		this.statusId = statusId;
 		this.statusName = statusName;
 	}
 	
-	public long getId() {
-		return id;
+	public long getStatusId() {
+		return statusId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setStatusId(long statusId) {
+		this.statusId = statusId;
 	}
 
 	public String getStatusName() {
@@ -40,12 +40,12 @@ public class Status {
 		this.statusName = statusName;
 	}
 	
-	public List<Status> getStatuses(){
-		return statuses;
+	public List<Listitem> getListitems(){
+		return listitems;
 	}
 	
-	public void setStatuses(List<Status> statuses) {
-		this.statuses = statuses;
+	public void setStatuses(List<Listitem>listitems) {
+		this.listitems = listitems;
 	}
 	
 }
