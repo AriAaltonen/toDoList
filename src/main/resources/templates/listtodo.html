@@ -34,7 +34,8 @@
 				</form>
 			</div>
 		</div>
-	<h1>All listitems</h1>
+		<div>
+	<h1>To-do</h1>
 		<table class="table table-striped">
 			<tr>
 				<th>Id</th>
@@ -43,7 +44,7 @@
 				<th> </th>
 				<th> </th>
 			</tr>
-			<tr th:each="listitem : ${listitemlist}">
+			<tr th:each="listitem : ${listTodo}">
 				<td th:text="${listitem.id}"></td>
 				<td th:text="${listitem.toDoListitem}"></td>
 				<td th:text="${listitem.status.statusName}"></td>
@@ -52,6 +53,7 @@
 			</tr>
 		</table>
 		<br>
+		</div>
 		</div>
 	</body>
 </html>

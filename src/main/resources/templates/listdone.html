@@ -32,9 +32,9 @@
 				<form th:action="@{/logout}" method="post">
 					<input type="submit" value="Sign Out" class="btn btn-danger btn-block"/>
 				</form>
-			</div>
-		</div>
-	<h1>All listitems</h1>
+			</div></div>
+	<div>
+	<h1>Done</h1>
 		<table class="table table-striped">
 			<tr>
 				<th>Id</th>
@@ -43,7 +43,7 @@
 				<th> </th>
 				<th> </th>
 			</tr>
-			<tr th:each="listitem : ${listitemlist}">
+			<tr th:each="listitem : ${listDone}">
 				<td th:text="${listitem.id}"></td>
 				<td th:text="${listitem.toDoListitem}"></td>
 				<td th:text="${listitem.status.statusName}"></td>
@@ -51,7 +51,9 @@
 				<td><a th:href="@{/delete/{id}(id=${listitem.id})}" class="btn btn-danger">Delete</a></td>
 			</tr>
 		</table>
-		<br>
+	</div>
+	<br>
+
 		</div>
 	</body>
 </html>

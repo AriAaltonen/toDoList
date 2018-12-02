@@ -26,12 +26,26 @@ public class toDoListController {
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String listitemList(Model model) {
 		model.addAttribute("listitemlist", listitemrepository.findAll());
-		model.addAttribute("listTodo", statusrepo.findByStatusName("To-do").get(0).getListitems());
-		model.addAttribute("listInProgress", statusrepo.findByStatusName("In-progress").get(0).getListitems());
-		model.addAttribute("listDone", statusrepo.findByStatusName("Done").get(0).getListitems());
 		return "listitems";
 	}
-	
+	//Show todo listitems
+	@RequestMapping(value = "/listtodo", method = RequestMethod.GET)
+	public String listtodoitemList(Model model) {
+		model.addAttribute("listTodo", statusrepo.findByStatusName("To-do").get(0).getListitems());
+		return "listtodo";
+	}
+	//Show inprogress listitems
+	@RequestMapping(value = "/listinprogress", method = RequestMethod.GET)
+	public String listiinprogtemList(Model model) {
+		model.addAttribute("listInProgress", statusrepo.findByStatusName("In-progress").get(0).getListitems());
+		return "listinprog";
+	}
+	//show done listitems
+	@RequestMapping(value = "/listdone", method = RequestMethod.GET)
+	public String listdoneitemList(Model model) {
+		model.addAttribute("listDone", statusrepo.findByStatusName("Done").get(0).getListitems());
+		return "listdone";
+	}
 	//Add a listitem with GET
 	//******************************************
 	@RequestMapping(value = "/addlistitem", method = RequestMethod.GET)
