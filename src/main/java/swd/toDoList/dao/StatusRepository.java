@@ -8,5 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface StatusRepository extends CrudRepository<Status, Long> {
 	List<Status> findAll();
+	Status findByStatusId(long statusId);
 	List<Status> findByStatusName(String statusName);
 }
